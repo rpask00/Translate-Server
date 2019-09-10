@@ -7,7 +7,7 @@ const fancy = {
     skin: 'Doppler'
 }
 
-router.get('/api', (req, res, next) => {
+router.get('/', (req, res, next) => {
     res.json(fancy)
 })
 
