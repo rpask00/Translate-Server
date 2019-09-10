@@ -1,23 +1,16 @@
 const express = require('express');
 const app = express();
+const apiRouter = require('./routes/api');
 
-let allowCrossDomain = function(req, res, next) {
+let allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Headers', "*");
     next();
-  }
-  app.use(allowCrossDomain);
-  
-
-const fancy = {
-    type: 'knife',
-    model: 'M9',
-    skin: 'Doppler'
 }
+app.use(allowCrossDomain);
 
-app.get('/', (req, res, next) => {
-    res.json(fancy)
-})
+
+app.use('/', apiRouter)
 
 app.listen(3000, () => {
     console.log('Listening at 3000')
