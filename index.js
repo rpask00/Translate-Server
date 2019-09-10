@@ -16,6 +16,7 @@ const fancy = {
 }
 
 app.get('/', (req, res, next) => {
+    res.
     res.json(fancy)
 })
 
