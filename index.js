@@ -14,12 +14,11 @@ app.use(allowCrossDomain);
 
 app.use('/api', apiRouter)
 app.get('/', (req, res, next) => {
-    res.json(connect)
-})
+    res.render('home')
 
-app.listen(3000, () => {
-    console.log('Listening at 3000')
-})
+    app.listen(3000, () => {
+        console.log('Listening at 3000')
+    })
 
 
 // git add .
