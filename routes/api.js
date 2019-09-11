@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router()
+const query = require('../database/query')
 
 const fancy = {
     type: 'knife',
@@ -8,7 +9,7 @@ const fancy = {
 }
 
 router.get('/', (req, res, next) => {
-    res.json(fancy)
+    res.json(query)
 })
 
 module.exports = router;

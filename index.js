@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const apiRouter = require('./routes/api');
 
+
+
 let allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Headers', "*");
@@ -10,7 +12,10 @@ let allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain);
 
 
-app.use('/', apiRouter)
+app.use('/api', apiRouter)
+app.get('/', (req, res, next) => {
+    res.json(connect)
+})
 
 app.listen(3000, () => {
     console.log('Listening at 3000')
