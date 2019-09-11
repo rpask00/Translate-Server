@@ -10,6 +10,7 @@ const connect = {
     database: 'heroku_583cf5f28fc60d7'
 }
 
+
 const db = mysql.createConnection(connect)
 
 const fancy = {
@@ -28,6 +29,11 @@ router.get('/api', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     res.render('home')
+})
+
+router.post('/load-words/:data', (req, res, next) => {
+    console.log(req.params.words)
+    res.json(req.params.words)
 })
 
 module.exports = router;
