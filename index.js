@@ -6,6 +6,15 @@ const path = require('path')
 const favicon = require('serve-favicon')
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
+let allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "*");
+    next();
+}
+app.use(allowCrossDomain);
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
