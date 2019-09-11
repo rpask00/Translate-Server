@@ -11,6 +11,10 @@ const connect = {
 const db = mysql.createConnection(connect)
 
 
-let query = db.query('select * from translate');
+let query = db.query('select * from translate', (err, response) => {
+    if (err) throw err;
+    console.log(response)
+    res.send('Table created');
+});
 
 module.exports = query;
