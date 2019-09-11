@@ -9,7 +9,8 @@ const fancy = {
 }
 
 router.get('/', (req, res, next) => {
-    res.json(query)
+    console.log(query)
+    res.json(fancy)
 })
 
 module.exports = router;
