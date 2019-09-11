@@ -8,9 +8,13 @@ const fancy = {
     skin: 'Doppler'
 }
 
-router.get('/', (req, res, next) => {
+router.get('/api', (req, res, next) => {
     console.log(query)
     res.json(fancy)
+})
+
+router.get('/', (req, res, next) => {
+    res.render('home')
 })
 
 module.exports = router;
