@@ -3,29 +3,19 @@ const app = express();
 const router = require('./routes/api');
 const path = require('path')
 const cors = require('cors');
-const favicon = require('serve-favicon')
+const favicon = require('serve-favicon');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+const corsFunctions = require('./cors')
+app.use(corsFunctions.allowCrossDomain);
+app.use(cors(corsFunctions.corsOptions));
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/translate', { useUnifiedTopology: true, useNewUrlParser: true });
+// mongoose.connect('mongodb://rafal:qwerty12@ds135421.mlab.com:35421/heroku_4mbjj45v', { useUnifiedTopology: true, useNewUrlParser: true });
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-
-
-let allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Headers', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT, POST,DELETE');
-    next();
-}
-app.use(allowCrossDomain);
-
-var whitelist = [
-    'http://0.0.0.0:3000',
-];
-var corsOptions = {
-    origin: function (origin, callback) {
-        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-        callback(null, originIsWhitelisted);
-    },
-    credentials: true
-};
-app.use(cors(corsOptions));
 
 
 // view engine setup
@@ -38,6 +28,8 @@ app.use('/', router)
 app.listen(process.env.PORT || 3000, () => {
     console.log('Listening at 3000')
 })
+
+
 
 
 // git add .
