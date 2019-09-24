@@ -43,7 +43,6 @@ router.get('/word/:id', (req, res, next) => {
 
 router.get('/words/:level', (req, res, next) => {
     const level = req.params.level;
-    console.log(req.params)
 
     Word.find({ level })
         .exec()
@@ -115,7 +114,7 @@ router.post('/load-words', (req, res, next) => {
 router.get('/randomWords', (req, res, next) => {
     console.log(req.query)
 
-    let randomWords = req.query.level.lenght ?
+    let randomWords = req.query.level ?
         Word.aggregate([
             { $match: { level: req.query.level } },
             { $sample: { size: parseInt(req.query.q) } }
@@ -127,6 +126,7 @@ router.get('/randomWords', (req, res, next) => {
 
     randomWords.exec()
         .then(result => {
+            console.log(result)
             res.status(200).json(result)
         })
         .catch(err => {
