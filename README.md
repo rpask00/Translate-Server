@@ -1,6 +1,6 @@
-# translate-server - https://github.com/rpask00/Translate-App
+# translate-server 
 
-Rest api for translate app 
+Rest api for translate app - https://github.com/rpask00/Translate-App
 
 # Tools
 Express.js
